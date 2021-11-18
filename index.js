@@ -1,7 +1,8 @@
 const express = require('express'),
     pug = require('pug'),
     path = require('path'),
-    routes = require('./routes/routes.js');
+    routes = require('./routes/routes.js'),
+    expressSession = require('express-session');
     
 const app = express();
 
@@ -28,5 +29,6 @@ const checkAuth = (req, res, next) => {
     }
 }
 
+app.get('/', routes.index)
 
 app.listen(3000);

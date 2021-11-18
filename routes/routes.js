@@ -6,3 +6,7 @@ const client = new MongoClient(url);
 const dbName = 'myData';
 const db = client.db(dbName);
 const collection = db.collection('Users');
+
+exports.index = (req, res) => {
+    res.render('login')
+}
