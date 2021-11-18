@@ -1,0 +1,25 @@
+{
+  "name": "the-data-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluna1203/The-Data-Express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gluna1203/The-Data-Express/issues"
+  },
+  "homepage": "https://github.com/gluna1203/The-Data-Express#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongodb": "^4.2.0",
+    "pug": "^3.0.2"
+  }
+}
