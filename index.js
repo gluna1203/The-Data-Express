@@ -3,7 +3,7 @@ const express = require('express'),
     path = require('path'),
     routes = require('./routes/routes.js'),
     expressSession = require('express-session');
-    
+
 const app = express();
 
 
@@ -22,7 +22,7 @@ const urlencodedParser = express.urlencoded({
 })
 
 const checkAuth = (req, res, next) => {
-    if (req.session.user && req.session.user.isAuthenticated){
+    if (req.session.user && req.session.user.isAuthenticated) {
         next();
     } else {
         res.redirect('/');
@@ -32,5 +32,10 @@ const checkAuth = (req, res, next) => {
 app.get('/', routes.index)
 app.post('/', urlencodedParser, routes.login)
 app.get('/edit', checkAuth, routes.edit)
+// app.get('/create', routes.create);
+// app.post('/create', urlencodedParser, routes.createPerson);
+// app.get('/edit/:id', routes.edit);
+// app.post('/edit/:id', urlencodedParser, routes.editPerson);
+
 
 app.listen(3000);
