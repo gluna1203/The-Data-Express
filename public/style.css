@@ -1,0 +1,30 @@
+html {
+    background-color: rgb(153, 153, 153);
+}
+
+body {
+    /* font-family: verdana, arial, sans-serif; */
+    font-size: 20px;
+    width: 30%;
+    padding: 20px;
+    position: absolute;
+    left: 33vw;
+    top: 33vh;
+    z-index: 1;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: yellow;
+}
+
+.content {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+    background-color: lightblue;
+}
