@@ -30,5 +30,7 @@ const checkAuth = (req, res, next) => {
 }
 
 app.get('/', routes.index)
+app.post('/', urlencodedParser, routes.login)
+app.get('/edit', checkAuth, routes.edit)
 
 app.listen(3000);

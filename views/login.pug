@@ -1,4 +1,22 @@
 extends layout
 
 block content 
-    p Test
+    form(method='POST' action='/')
+            p Username (user):
+                br
+                input(type="text" name='usernameCreate')
+            p Password (pass):
+                br
+                input(type="text" name='passwordCreate')
+            p 
+                input(type='submit' value="Create")
+
+    form(method='POST' action='/')
+            p Username:
+                br
+                input(type="text" name='username')
+            p Password:
+                br
+                input(type="text" name='password')
+            p 
+                input(type='submit' value="Log in")
