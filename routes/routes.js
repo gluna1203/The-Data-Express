@@ -32,3 +32,33 @@ exports.createPerson = async (req, res) => {
     client.close();
     res.redirect('/');
 };
+
+exports.edit = async (req, res) => {
+    await client.connect();
+    const filteredDocs = await collection.find(ObjectId(req.params.id)).toArray();
+    client.close();
+    res.render('edit', {
+        title: 'Edit Person',
+        person: filteredDocs[0]
+    });
+};
+
+exports.editPerson = async (req, res) => {
+    await client.connect();
+    const updateResult = await collection.updateOne(
+        { _id: ObjectId(req.params.id) },
+        {
+            $set: {
+                username: req.body.username,
+                password: req.body.password,
+                email: req.body.email,
+                age: req.body.age,
+                question1: req.body.question1,
+                question2: req.body.question2,
+                question3: req.body.question3
+            }
+        }
+    );
+    client.close();
+    res.redirect('/');
+};

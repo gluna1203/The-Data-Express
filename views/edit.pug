@@ -1,0 +1,40 @@
+extends layout 
+
+block content 
+    form(id='form' method='post' action='/create')
+        label(for='name') Username: 
+        input(type="text", name="username")
+        br
+        label(for="age") Password: 
+        input(type="text", name="password")
+        br
+        label(for='name') Email: 
+        input(type="text", name="email")
+        br
+        label(for='name') Age: 
+        input(type="text", name="age")
+        br
+        label(for='name') Are Professor Beaty's participation quizzes funny? 
+        select(name='question1')
+            option(value='1') Yes
+            option(value='2') No
+            option(value='3') Possibly
+            option(value='4') Absolutely not
+        br
+
+        label(for='name') What is your favorite color? 
+        select(name='question1')
+            option(value='1') Green
+            option(value='2') It's Green!
+            option(value='3') Definately not a color that isn't green
+            option(value='4') I thought it was something different but it's green
+        br
+
+        label(for='name') Are taxes bad? 
+        select(name='question1')
+            option(value='1') Yes
+            option(value='2') No 
+            option(value='3') They are theft
+            option(value='4') Do to the IRS, I am obligated to say no
+        br
+        input(type="submit" value="Update Person")
