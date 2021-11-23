@@ -28,11 +28,11 @@ const hashComplete = (password, the_hash) => {
 
 exports.createPerson = async (req, res) => {
     await client.connect();
-    if ((req.body.usernameCreate && req.body.passwordCreate) != undefined){
+    if ((req.body.username && req.body.password) != undefined){
         
         let person = {
-            username: req.body.usernameCreate,
-            password: makeHash(req.body.passwordCreate)
+            username: req.body.username,
+            password: makeHash(req.body.password)
         }
         const insertResult = await collection.insertOne(person);
         client.close();
@@ -82,32 +82,32 @@ exports.create = (req, res) => {
 //     res.redirect('/');
 // };
 
-exports.edit = async (req, res) => {
-    await client.connect();
-    const filteredDocs = await collection.find(ObjectId(req.params.id)).toArray();
-    client.close();
-    res.render('edit', {
-        title: 'Edit Person',
-        person: filteredDocs[0]
-    });
-};
+// exports.edit = async (req, res) => {
+//     await client.connect();
+//     const filteredDocs = await collection.find(ObjectId(req.params.id)).toArray();
+//     client.close();
+//     res.render('edit', {
+//         title: 'Edit Person',
+//         person: filteredDocs[0]
+//     });
+// };
 
-exports.editPerson = async (req, res) => {
-    await client.connect();
-    const updateResult = await collection.updateOne(
-        { _id: ObjectId(req.params.id) },
-        {
-            $set: {
-                username: req.body.username,
-                password: req.body.password,
-                email: req.body.email,
-                age: req.body.age,
-                question1: req.body.question1,
-                question2: req.body.question2,
-                question3: req.body.question3
-            }
-        }
-    );
-    client.close();
-    res.redirect('/');
-};
+// exports.editPerson = async (req, res) => {
+//     await client.connect();
+//     const updateResult = await collection.updateOne(
+//         { _id: ObjectId(req.params.id) },
+//         {
+//             $set: {
+//                 username: req.body.username,
+//                 password: req.body.password,
+//                 email: req.body.email,
+//                 age: req.body.age,
+//                 question1: req.body.question1,
+//                 question2: req.body.question2,
+//                 question3: req.body.question3
+//             }
+//         }
+//     );
+//     client.close();
+//     res.redirect('/');
+// };
