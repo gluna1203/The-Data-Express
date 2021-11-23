@@ -12,20 +12,6 @@ exports.index = (req, res) => {
     res.render('login')
 }
 
-const makeHash = the_str => {
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(the_str, salt, (err, my_hash) => {
-            return my_hash;
-        });
-    });
-};
-
-const hashComplete = (password, the_hash) => {
-    bcrypt.compare(password, the_hash, (err, res) => {
-    })
-}
-
-
 // exports.createPerson = async (req, res) => {
 //     await client.connect();
 //     if ((req.body.username && req.body.password) != undefined){
@@ -45,7 +31,7 @@ const hashComplete = (password, the_hash) => {
 exports.login = async (req, res) => {
     await client.connect();
     const findResult = await collection.find({ username: req.body.username }).toArray();
-    if (bcrypt.compare(req.body.password, findResult[0].password)) {
+    if (bcrypt.compareSync(req.body.password, findResult[0].password)) {
         req.session.user = {
             isAuthenticated: true,
             username: findResult[0].username
