@@ -32,10 +32,10 @@ const checkAuth = (req, res, next) => {
 app.get('/', routes.index)
 app.post('/', urlencodedParser, routes.login)
 app.get('/edit', checkAuth, routes.edit)
-// app.get('/create', routes.create);
-// app.post('/create', urlencodedParser, routes.createPerson);
-// app.get('/edit/:id', routes.edit);
-// app.post('/edit/:id', urlencodedParser, routes.editPerson);
+app.get('/create', routes.create);
+app.post('/create', urlencodedParser, routes.createPerson);
+app.get('/edit/:id', routes.edit);
+app.post('/edit/:id', urlencodedParser, routes.editPerson);
 
 
 app.listen(3000);
