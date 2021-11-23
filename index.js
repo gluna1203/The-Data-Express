@@ -34,8 +34,8 @@ app.post('/', urlencodedParser, routes.login)
 // app.get('/edit', checkAuth, routes.edit)
 app.get('/create', routes.create);
 app.post('/create', urlencodedParser, routes.createPerson);
-app.get('/edit', checkAuth, routes.edit);
-app.post('/edit', checkAuth, urlencodedParser, routes.editPerson);
+app.get('/edit/:id', checkAuth, routes.edit);
+app.post('/edit/:id', checkAuth, urlencodedParser, routes.editPerson);
 
 
 app.listen(3000);
