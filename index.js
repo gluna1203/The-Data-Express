@@ -4,7 +4,10 @@ const express = require('express'),
     routes = require('./routes/routes.js'),
     expressSession = require('express-session');
 
+const cookieParser = require('cookie-parser')
+
 const app = express();
+app.use(cookieParser())
 
 
 app.set('view engine', 'pug');
@@ -36,6 +39,7 @@ app.get('/create', routes.create);
 app.post('/create', urlencodedParser, routes.createPerson);
 app.get('/edit/:id', checkAuth, routes.edit);
 app.post('/edit/:id', checkAuth, urlencodedParser, routes.editPerson);
+app.get('/logout', checkAuth, routes.logout);
 
 
 app.listen(3000);

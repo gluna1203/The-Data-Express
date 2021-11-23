@@ -1,6 +1,6 @@
 const { MongoClient, ObjectId } = require('mongodb')
 const bcrypt = require('bcryptjs');
-const cookieParser = require('cookie-parser')
+
 
 
 const url = 'mongodb+srv://Joey:SirPentious@cluster0.dps0f.mongodb.net/myData?retryWrites=true&w=majority'; // Using ATLAS
@@ -108,3 +108,13 @@ exports.editPerson = async (req, res) => {
     client.close();
     res.redirect('/');
 };
+
+exports.logout = (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.redirect('/');
+        }
+    })
+}
