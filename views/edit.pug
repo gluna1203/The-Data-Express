@@ -1,7 +1,7 @@
 extends layout 
 
 block content 
-    form(id='form' method='post' action='/create')
+    form(id='form' method='post' action='/create' class='content')
         label(for='name') Username: 
         input(type="text", name="username")
         br
@@ -14,27 +14,28 @@ block content
         label(for='name') Age: 
         input(type="text", name="age")
         br
-        label(for='name') Are Professor Beaty's participation quizzes funny? 
+        label(for='question1') Are Professor Beaty's participation quizzes funny? 
         select(name='question1')
-            option(value='1') Yes
-            option(value='2') No
-            option(value='3') Possibly
-            option(value='4') Absolutely not
+            option(value='Yes') Yes
+            option(value='No') No
+            option(value='Possibly') Possibly
+            option(value='Absolutely not') Absolutely not
         br
 
-        label(for='name') What is your favorite color? 
-        select(name='question1')
-            option(value='1') Green
-            option(value='2') It's Green!
-            option(value='3') Definately not a color that isn't green
-            option(value='4') I thought it was something different but it's green
+        label(for='question2') What is your favorite color? 
+        select(name='question2')
+            option(value='Green') Green
+            option(value=`It's Green!`) It's Green!
+            option(value=`Definately not a color that isn't green`) `Definately not a color that isn't green`
+            option(value=`I thought it was something different but it's green`) `I thought it was something different but it's green`
         br
 
-        label(for='name') Are taxes bad? 
-        select(name='question1')
-            option(value='1') Yes
-            option(value='2') No 
-            option(value='3') They are theft
-            option(value='4') Do to the IRS, I am obligated to say no
+        label(for='question3') Are taxes bad? 
+        select(name='question3')
+            option(value='Yes') Yes
+            option(value='No') No 
+            option(value='They are theft') They are theft
+            option(value='Do to the IRS, I am obligated to say no') Do to the IRS, I am obligated to say no
+        br
         br
         input(type="submit" value="Update Person")
