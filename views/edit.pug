@@ -1,7 +1,7 @@
 extends layout 
 
 block content 
-    form(id='form' method='post' action='/create' class='content')
+    form(id='form' method='post' action='/edit/' + preson._id)
         label(for='name') Username: 
         input(type="text", name="username")
         br
