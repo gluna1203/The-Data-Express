@@ -12,8 +12,14 @@ const collection = db.collection('Users');
 
 exports.index = (req, res) => {
     var now = new Date();
+    let value;
     res.cookie("visited", now.toLocaleString(), {maxAge: 99999})
-    let cookieInfo = `Last Time Visited : ${req.cookies.visited}`;
+    if (req.cookies.visited === undefined){
+        value = "First Time Here :)"
+    } else {
+        value = req.cookies.visited;
+    }
+    let cookieInfo = `Last Time Visited : ${value}`;
     res.render('login', {
         cookie: cookieInfo
     })
