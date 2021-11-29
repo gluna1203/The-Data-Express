@@ -11,7 +11,12 @@ const db = client.db(dbName);
 const collection = db.collection('Users');
 
 exports.index = (req, res) => {
-    res.render('login')
+    var now = new Date();
+    res.cookie("visited", now.toLocaleString(), {maxAge: 99999})
+    let cookieInfo = `Last Time Visited : ${req.cookies.visited}`;
+    res.render('login', {
+        cookie: cookieInfo
+    })
 }
 
 // exports.createPerson = async (req, res) => {
