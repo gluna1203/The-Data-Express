@@ -10,6 +10,12 @@ const app = express();
 
 app.use(cookieParser('whatever'))
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + "/views");
