@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
             isAuthenticated: true,
             username: findResult[0].username
         }
-        res.redirect('/edit/'+findResult[0]._id)
+        res.redirect('/edit/' + findResult[0]._id)
     } else {
         res.redirect('/')
     }
@@ -92,7 +92,7 @@ exports.editPerson = async (req, res) => {
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(req.body.password, salt);
     const updateResult = await collection.updateOne(
-        {_id: ObjectId(req.params.id)},
+        { _id: ObjectId(req.params.id) },
         {
             $set: {
                 username: req.body.username,
