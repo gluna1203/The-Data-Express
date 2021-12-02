@@ -13,8 +13,8 @@ const collection = db.collection('Users');
 exports.index = (req, res) => {
     var now = new Date();
     let value;
-    res.cookie("visited", now.toLocaleString(), {maxAge: 99999})
-    if (req.cookies.visited === undefined){
+    res.cookie("visited", now.toLocaleString(), { maxAge: 99999 })
+    if (req.cookies.visited === undefined) {
         value = "First Time Here :)"
     } else {
         value = req.cookies.visited;
@@ -24,22 +24,6 @@ exports.index = (req, res) => {
         cookie: cookieInfo
     })
 }
-
-// exports.createPerson = async (req, res) => {
-//     await client.connect();
-//     if ((req.body.username && req.body.password) != undefined){
-
-//         let person = {
-//             username: req.body.username,
-//             password: makeHash(req.body.password)
-//         }
-//         const insertResult = await collection.insertOne(person);
-//         client.close();
-//         res.redirect('/')
-//     } else {
-
-//     }
-// }
 
 exports.login = async (req, res) => {
     await client.connect();
@@ -56,9 +40,6 @@ exports.login = async (req, res) => {
     client.close();
 }
 
-// exports.edit = async (req, res) => {
-//     res.render('edit');
-// }
 exports.create = (req, res) => {
     res.render('create', {
         title: 'Add Person'
@@ -128,4 +109,8 @@ exports.logout = (req, res) => {
             res.redirect('/');
         }
     })
+}
+
+exports.api = async (req, res) => {
+
 }

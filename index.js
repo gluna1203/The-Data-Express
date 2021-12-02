@@ -34,7 +34,7 @@ const urlencodedParser = express.urlencoded({
 const checkAuth = (req, res, next) => {
     if (req.session.user && req.session.user.isAuthenticated) {
         next();
-    } else {
+    } else {    
         res.redirect('/');
     }
 }
