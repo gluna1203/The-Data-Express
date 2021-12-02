@@ -27,12 +27,22 @@ app.use(expressSession({
     resave: true
 }));
 
+
+
 const urlencodedParser = express.urlencoded({
     extended: false
 })
 
 const checkAuth = (req, res, next) => {
     if (req.session.user && req.session.user.isAuthenticated) {
+        next();
+    } else {    
+        res.redirect('/');
+    }
+}
+
+const checkAuthAdmin = (req, res, next) => {
+    if (req.session.admin && req.session.admin.isAuthenticated) {
         next();
     } else {    
         res.redirect('/');
@@ -46,7 +56,9 @@ app.get('/create', routes.create);
 app.post('/create', urlencodedParser, routes.createPerson);
 app.get('/edit/:id', checkAuth, routes.edit);
 app.post('/edit/:id', checkAuth, urlencodedParser, routes.editPerson);
-app.get('/logout', checkAuth, routes.logout);
+app.get('/logout', routes.logout);
+app.get('/account', checkAuthAdmin, routes.account);
+app.post('/account', checkAuthAdmin, urlencodedParser, routes.admin)
 
 
 app.listen(3000);

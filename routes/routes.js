@@ -29,9 +29,20 @@ exports.login = async (req, res) => {
     await client.connect();
     const findResult = await collection.find({ username: req.body.username }).toArray();
     if (bcrypt.compareSync(req.body.password, findResult[0].password)) {
-        req.session.user = {
-            isAuthenticated: true,
-            username: findResult[0].username
+        if (findResult[0].Admin == "True"){
+            req.session.admin = {
+                isAuthenticated: true,
+                username: findResult[0].username
+            }
+            req.session.user = {
+                isAuthenticated: true,
+                username: findResult[0].username
+            }
+        } else {
+            req.session.user = {
+                isAuthenticated: true,
+                username: findResult[0].username
+            }
         }
         res.redirect('/edit/' + findResult[0]._id)
     } else {
@@ -109,6 +120,29 @@ exports.logout = (req, res) => {
             res.redirect('/');
         }
     })
+}
+
+exports.account = (req, res) => {
+    res.render('account')
+}
+
+exports.admin = async (req, res) => {
+    await client.connect();
+    if (req.body.Admin == "Yes") {
+        const updateResult = await collection.updateOne({ username: req.body.username },
+            {
+                $set: {
+                    Admin: "True"
+            }
+            }
+        )
+    }
+
+    if (req.body.delete == "Yes"){
+        const deleteResult = await collection.deleteOne({ username: req.body.username})
+    }
+
+    res.redirect('/')
 }
 
 exports.api = async (req, res) => {

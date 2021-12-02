@@ -1,3 +1,20 @@
 extends layout
 
 block content
+    form(method='POST' action='/account')
+            p Username:
+                br
+                input(type="text" name='username')
+            label(for='Admin') ADMIN?
+            br
+            select(name='Admin')
+                option(value='No') No
+                option(value='Yes') Yes
+            br
+            label(for='delete') Delete?
+            br
+            select(name='delete')
+                option(value='No') No
+                option(value='Yes') Yes
+            p 
+                input(type='submit' value="Make Changes")
