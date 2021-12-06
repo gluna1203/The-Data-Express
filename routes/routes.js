@@ -29,7 +29,7 @@ exports.login = async (req, res) => {
     await client.connect();
     const findResult = await collection.find({ username: req.body.username }).toArray();
     if (bcrypt.compareSync(req.body.password, findResult[0].password)) {
-        if (findResult[0].Admin == "True"){
+        if (findResult[0].Admin == "True") {
             req.session.admin = {
                 isAuthenticated: true,
                 username: findResult[0].username
@@ -92,22 +92,43 @@ exports.edit = async (req, res) => {
 
 exports.editPerson = async (req, res) => {
     await client.connect();
-    let salt = bcrypt.genSaltSync(10);
-    let hash = bcrypt.hashSync(req.body.password, salt);
-    const updateResult = await collection.updateOne(
-        { _id: ObjectId(req.params.id) },
-        {
-            $set: {
-                username: req.body.username,
-                password: hash,
-                email: req.body.email,
-                age: req.body.age,
-                question1: req.body.question1,
-                question2: req.body.question2,
-                question3: req.body.question3
+
+    if (req.body.password == '') {
+        const findResult = await collection.find({ username: req.body.username }).toArray();
+        const updateResult = await collection.updateOne(
+            { _id: ObjectId(req.params.id) },
+            {
+                $set: {
+                    username: req.body.username,
+                    password: findResult[0].password,
+                    email: req.body.email,
+                    age: req.body.age,
+                    question1: req.body.question1,
+                    question2: req.body.question2,
+                    question3: req.body.question3
+                }
             }
-        }
-    );
+        );
+    } else {
+        let salt = bcrypt.genSaltSync(10);
+        let hash = bcrypt.hashSync(req.body.password, salt);
+        const updateResult = await collection.updateOne(
+            { _id: ObjectId(req.params.id) },
+            {
+                $set: {
+                    username: req.body.username,
+                    password: hash,
+                    email: req.body.email,
+                    age: req.body.age,
+                    question1: req.body.question1,
+                    question2: req.body.question2,
+                    question3: req.body.question3
+                }
+            }
+        );
+    }
+
+
     client.close();
     res.redirect('/');
 };
@@ -133,16 +154,16 @@ exports.admin = async (req, res) => {
             {
                 $set: {
                     Admin: "True"
-            }
+                }
             }
         )
+        res.redirect('/')
+    } else if (req.body.delete == "Yes") {
+        const deleteResult = await collection.deleteOne({ username: req.body.username })
+        res.redirect('/')
+    } else {
+        res.redirect('/')
     }
-
-    if (req.body.delete == "Yes"){
-        const deleteResult = await collection.deleteOne({ username: req.body.username})
-    }
-
-    res.redirect('/')
 }
 
 exports.api = async (req, res) => {

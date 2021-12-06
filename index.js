@@ -57,8 +57,8 @@ app.post('/create', urlencodedParser, routes.createPerson);
 app.get('/edit/:id', checkAuth, routes.edit);
 app.post('/edit/:id', checkAuth, urlencodedParser, routes.editPerson);
 app.get('/logout', routes.logout);
-app.get('/account', checkAuthAdmin, routes.account);
-app.post('/account', checkAuthAdmin, urlencodedParser, routes.admin)
+app.get('/account',checkAuthAdmin, routes.account);
+app.post('/account',checkAuthAdmin, urlencodedParser, routes.admin)
 
 
 app.listen(3000);
