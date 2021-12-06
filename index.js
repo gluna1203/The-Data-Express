@@ -59,6 +59,6 @@ app.post('/edit/:id', checkAuth, urlencodedParser, routes.editPerson);
 app.get('/logout', routes.logout);
 app.get('/account',checkAuthAdmin, routes.account);
 app.post('/account',checkAuthAdmin, urlencodedParser, routes.admin)
-
+app.get('/api', routes.api)
 
 app.listen(3000);

@@ -164,8 +164,38 @@ exports.admin = async (req, res) => {
     } else {
         res.redirect('/')
     }
+    client.close();
 }
 
 exports.api = async (req, res) => {
+    await client.connect();
+    var tempArray = [];
+    const questionOneA = await collection.find({ question1: "Yes"}).count();
+    const questionOneB = await collection.find({ question1: "No"}).count();
+    const questionOneC = await collection.find({ question1: "Possibly"}).count();
+    const questionOneD = await collection.find({ question1: "Absolutely not"}).count();
+    tempArray.push(questionOneA)
+    tempArray.push(questionOneB)
+    tempArray.push(questionOneC)
+    tempArray.push(questionOneD)
 
+    const questionTwoA = await collection.find({ question2: "Green"}).count();
+    const questionTwoB = await collection.find({ question2: "It's Green!"}).count();
+    const questionTwoC = await collection.find({ question2: "Definately not a color that isn't green"}).count();
+    const questionTwoD = await collection.find({ question2: "I thought it was something different but it's green"}).count();
+    tempArray.push(questionTwoA)
+    tempArray.push(questionTwoB)
+    tempArray.push(questionTwoC)
+    tempArray.push(questionTwoD)
+
+    const questionThreeA = await collection.find({ question3: "Yes"}).count();
+    const questionThreeB = await collection.find({ question3: "No"}).count();
+    const questionThreeC = await collection.find({ question3: "They are theft"}).count();
+    const questionThreeD = await collection.find({ question3: "Do to the IRS, I am obligated to say no"}).count();
+    tempArray.push(questionThreeA)
+    tempArray.push(questionThreeB)
+    tempArray.push(questionThreeC)
+    tempArray.push(questionThreeD)
+
+    res.json(tempArray)
 }
