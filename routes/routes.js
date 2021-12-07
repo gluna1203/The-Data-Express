@@ -13,12 +13,9 @@ const db = client.db(dbName);
 const collection = db.collection('Users');
 
 exports.index = (req, res) => {
+    const json = "http://localhost:3000/api";
+    
 
-    xhr.open('GET', "http://localhost:3000/api", true)
-    xhr.onload = function () {
-        var data = JSON.parse(this.response)
-        console.log(data)
-    }
     var now = new Date();
     let value;
     res.cookie("visited", now.toLocaleString(), { maxAge: 99999 })
