@@ -13,9 +13,6 @@ const db = client.db(dbName);
 const collection = db.collection('Users');
 
 exports.index = (req, res) => {
-    // const json = "http://localhost:3000/api";
-    
-
     var now = new Date();
     let value;
     res.cookie("visited", now.toLocaleString(), { maxAge: 99999 })
