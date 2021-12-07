@@ -1,7 +1,5 @@
 const { MongoClient, ObjectId } = require('mongodb')
 const bcrypt = require('bcryptjs');
-var XMLHttpRequest = require('xhr2');
-var xhr = new XMLHttpRequest();
 
 
 

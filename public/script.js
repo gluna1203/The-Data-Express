@@ -1,3 +1,12 @@
+const { MongoClient, ObjectId } = require('mongodb')
+
+const url = 'mongodb+srv://Joey:SirPentious@cluster0.dps0f.mongodb.net/myData?retryWrites=true&w=majority'; // Using ATLAS
+const client = new MongoClient(url);
+
+const dbName = 'myData';
+const db = client.db(dbName);
+const collection = db.collection('Users');
+
 var canvas = document.getElementById("can");
 var ctx = canvas.getContext("2d");
 var lastend = 0;
@@ -5,6 +14,7 @@ var data = [1, 0, 5, 7, 1, 6, 1, 1, 4, 1, 1, 1];
 var myTotal = 0;
 var myColor = ['blue', 'red', 'green', 'magenta', 'yellow', 'purple', 'orange', 'pink', 'cyan', 'maroon', 'grey', 'black'];
 var labels = ['', '', '', '', '', '', '', '', '', '', '', ''];
+
 
 for (var e = 0; e < data.length; e++) {
     myTotal += data[e];
@@ -121,7 +131,7 @@ ctx1.fillText(`Are taxes bad?`, 35, 265,);
 ctx1.fillText('Yes', 50, 285);
 ctx1.fillText('No', 50, 305);
 ctx1.fillText('They are theft', 50, 325);
-ctx1.fillText('Do to the IRS, I am obligated to say no', 50, 345);
+ctx1.fillText('Due to the IRS, I am obligated to say no', 50, 345);
 
 
 
