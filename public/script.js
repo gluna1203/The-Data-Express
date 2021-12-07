@@ -1,6 +1,15 @@
 var canvas = document.getElementById("can");
 var ctx = canvas.getContext("2d");
 var lastend = 0;
+
+let fetchData = async () => {
+    const response = await fetch('http://localhost:3000/api');
+    const data = await response.json();
+    console.log(data);
+}
+
+fetchData();
+
 var data = [1, 0, 5, 7, 1, 6, 1, 1, 4, 1, 1, 1];
 var myTotal = 0;
 var myColor = ['blue', 'red', 'green', 'magenta', 'yellow', 'purple', 'orange', 'pink', 'cyan', 'maroon', 'grey', 'black'];
