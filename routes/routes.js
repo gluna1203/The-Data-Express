@@ -15,7 +15,7 @@ exports.index = (req, res) => {
     let value;
     res.cookie("visited", now.toLocaleString(), { maxAge: 99999 })
     if (req.cookies.visited === undefined) {
-        value = "First Time Here :)"
+        value = "First Time Here ;)"
     } else {
         value = req.cookies.visited;
     }
