@@ -191,7 +191,7 @@ exports.api = async (req, res) => {
     const questionThreeA = await collection.find({ question3: "Yes"}).count();
     const questionThreeB = await collection.find({ question3: "No"}).count();
     const questionThreeC = await collection.find({ question3: "They are theft"}).count();
-    const questionThreeD = await collection.find({ question3: "Do to the IRS, I am obligated to say no"}).count();
+    const questionThreeD = await collection.find({ question3: "Due to the IRS, I am obligated to say no"}).count();
     tempArray.push(questionThreeA)
     tempArray.push(questionThreeB)
     tempArray.push(questionThreeC)
